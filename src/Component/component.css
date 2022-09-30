@@ -1,0 +1,8 @@
+.input-todo input {
+    border-radius: 8px;
+    width: 500px;
+}
+
+.list-todos {
+    width: 570px;
+}

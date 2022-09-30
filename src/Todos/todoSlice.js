@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import makeId from "./makeId";
 
 const TodoSlice = createSlice({
     name: "todos",
     initialState : {
         todos : [],
     },
-    
+
 reducers : {
 
     addTodo(state, action) {
         state.todos.push({
-            id : new Date().toDateString(),
-            title : action.payload.text,
+            id : makeId(10),
+            date : new Date().toDateString(),
+            title : action.payload.value,
             completed: false,
         })
     },
@@ -20,14 +22,14 @@ reducers : {
         state.todos = state.todos.filter((todo) => todo.id !== action.payload.id)
     },
     
-    todoChekced(state, action) {
+    todoChecked(state, action) {
         const checked = state.todos.find((todo) => todo.id === action.payload.id) 
         checked.completed = ! checked.completed
     }
 }
 })
 
-export const {addTodo, deleteTodo} = TodoSlice.actions
+export const {addTodo, deleteTodo, todoChecked} = TodoSlice.actions
 
 export default TodoSlice.reducer
 
